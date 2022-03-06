@@ -8,15 +8,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let subReddit of redditResponse?.children">
-        <td>{{ subReddit?.data?.name }}</td>
-        <td>
-          <a [attr.href]="subReddit?.data?.url" target="_blank">
-            {{ subReddit?.data?.title }}
-          </a>
-        </td>
-        <td>{{ subReddit?.data?.subreddit_type }}</td>
-      </tr>
+      <tr *ngFor="let subReddit of redditResponse?.children" [ns-reddit-item]="subReddit.data"></tr>
     </tbody>
   </table>
 </div>

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnInit, ViewEncapsulation } from "@angular/core";
 import { ResponseDataObj } from "../interfaces/reddit-response";
 import { RedditService } from "../services/reddit.service";
 
@@ -6,6 +6,7 @@ import { RedditService } from "../services/reddit.service";
   selector: "ns-reddit-list-container",
   templateUrl: "./reddit-list-container.component.html",
   styleUrls: ["./reddit-list-container.component.css"],
+  encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class RedditListContainerComponent implements OnInit {
   @Input() limit: number | undefined;
