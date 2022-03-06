@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewEncapsulation } from "@angular/core";
+import { Component, Input, OnChanges, OnInit, ViewEncapsulation } from "@angular/core";
 import { ResponseDataObj } from "../interfaces/reddit-response";
 import { RedditService } from "../services/reddit.service";
 
@@ -9,27 +9,9 @@ import { RedditService } from "../services/reddit.service";
   encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class RedditListContainerComponent implements OnInit {
-  @Input() limit: number | undefined;
-  redditResponse: ResponseDataObj;
+  @Input() responseDataObj: ResponseDataObj | undefined;
 
-  constructor(private redditService: RedditService) {
-    this.redditResponse = new ResponseDataObj();
-  }
+  constructor() {}
 
-  ngOnInit() {
-    this.getPaginatedRedditData();
-    this.checkNextRedditDataLoad();
-  }
-
-  async getPaginatedRedditData() {
-    const redditRes = await this.redditService.getReddit(this.limit, this.redditResponse?.after);
-    this.redditResponse.after = redditRes.after;
-    this.redditResponse.children = [...this.redditResponse.children, ...redditRes.children];
-  }
-
-  private async checkNextRedditDataLoad() {
-    this.redditService.isScrollToDown().subscribe((isScrolledDown) => {
-      if (isScrolledDown) this.getPaginatedRedditData();
-    });
-  }
+  ngOnInit(): void {}
 }

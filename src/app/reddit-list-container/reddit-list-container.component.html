@@ -8,7 +8,10 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let subReddit of redditResponse?.children" [ns-reddit-item]="subReddit.data"></tr>
+      <tr
+        *ngFor="let subReddit of responseDataObj?.children"
+        [ns-reddit-item]="subReddit.data"
+      ></tr>
     </tbody>
   </table>
 </div>
